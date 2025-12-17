@@ -1,0 +1,533 @@
+.battery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.battery-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4CAF50, #2196F3, #FF9800);
+}
+
+.battery-icon {
+  position: relative;
+  margin-bottom: 28px;
+  transition: transform 0.3s ease;
+}
+
+.battery-icon:hover {
+  transform: scale(1.05);
+}
+
+.battery-outline {
+  width: 200px;
+  height: 90px;
+  border: 5px solid #2c3e50;
+  border-radius: 15px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 15px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.battery-terminal {
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 30px;
+  background: linear-gradient(to right, #2c3e50, #34495e);
+  border-radius: 0 8px 8px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.battery-level {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  bottom: 3px;
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.8s ease;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.charging-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.charging-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9));
+  animation: pulse 1.5s infinite, float 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { 
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% { 
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-5px); }
+}
+
+.battery-info {
+  text-align: center;
+  width: 100%;
+}
+
+.battery-info h3 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.battery-percentage {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 10px 0 15px 0;
+  color: #2c3e50;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #2c3e50, #4a6491);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.battery-health-status {
+  font-size: 1.1rem;
+  margin: 10px 0 20px 0;
+  color: #555;
+  font-weight: 600;
+}
+
+.health-text {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.battery-details {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.battery-status,
+.battery-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.battery-status:last-child,
+.battery-time:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.status-label,
+.time-label {
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+.status-value,
+.time-value {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 6px 14px;
+  border-radius: 12px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.status-value.charging {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #2e7d32;
+  border: 2px solid rgba(76, 175, 80, 0.3);
+}
+
+.status-value.discharging {
+  background-color: rgba(244, 67, 54, 0.15);
+  color: #c62828;
+  border: 2px solid rgba(244, 67, 54, 0.3);
+}
+
+.time-value {
+  background-color: rgba(33, 150, 243, 0.15);
+  color: #1565c0;
+  border: 2px solid rgba(33, 150, 243, 0.3);
+}
+
+.battery-health {
+  margin-top: 25px;
+  width: 100%;
+}
+
+.health-bar {
+  height: 14px;
+  background-color: #e0e0e0;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.health-level {
+  height: 100%;
+  border-radius: 7px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.8s ease;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.health-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 600;
+  padding: 0 5px;
+}
+
+.last-updated {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #7b8793;
+  font-style: italic;
+}
+
+.battery-loading {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  bottom: 3px;
+  width: 50%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite linear;
+  border-radius: 10px;
+}
+
+@keyframes loading {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loading .battery-percentage {
+  color: #a0aec0;
+}
+
+.loading-text {
+  color: #718096;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.error .battery-outline {
+  border-color: #a0aec0;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.error .battery-terminal {
+  background: linear-gradient(to right, #a0aec0, #cbd5e0);
+}
+
+.battery-error {
+  color: #e53e3e;
+  font-weight: 600;
+  margin: 12px 0;
+  padding: 12px;
+  background-color: rgba(229, 62, 62, 0.1);
+  border-radius: 10px;
+  border-left: 4px solid #e53e3e;
+}
+
+.battery-hint {
+  font-size: 0.95rem;
+  color: #4a5568;
+  margin-top: 10px;
+  line-height: 1.5;
+  padding: 10px;
+  background-color: rgba(237, 242, 247, 0.8);
+  border-radius: 8px;
+}
+
+.supported-browsers {
+  margin-top: 20px;
+  text-align: left;
+  padding: 15px;
+  background-color: rgba(237, 242, 247, 0.9);
+  border-radius: 10px;
+}
+
+.supported-browsers p {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.supported-browsers ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #4a5568;
+}
+
+.supported-browsers li {
+  margin-bottom: 5px;
+}
+
+.retry-button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.retry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.retry-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .battery-container {
+    padding: 25px;
+    max-width: 380px;
+    border-radius: 20px;
+  }
+  
+  .battery-outline {
+    width: 180px;
+    height: 80px;
+  }
+  
+  .battery-percentage {
+    font-size: 3.5rem;
+  }
+  
+  .battery-info h3 {
+    font-size: 1.4rem;
+  }
+  
+  .status-value,
+  .time-value {
+    min-width: 120px;
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .battery-container {
+    padding: 20px;
+    max-width: 320px;
+    border-radius: 18px;
+    margin: 10px;
+  }
+  
+  .battery-outline {
+    width: 150px;
+    height: 65px;
+    border-width: 4px;
+    border-radius: 12px;
+  }
+  
+  .battery-terminal {
+    width: 8px;
+    height: 24px;
+    right: -12px;
+  }
+  
+  .battery-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .battery-percentage {
+    font-size: 2.8rem;
+    margin: 5px 0 10px 0;
+  }
+  
+  .battery-details {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  
+  .battery-status,
+  .battery-time {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+  
+  .status-value,
+  .time-value {
+    min-width: 100%;
+    margin-top: 5px;
+  }
+  
+  .health-labels {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .battery-container {
+    max-width: 280px;
+    padding: 15px;
+  }
+  
+  .battery-outline {
+    width: 130px;
+    height: 55px;
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .battery-container {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: #e2e8f0;
+  }
+  
+  .battery-info h3 {
+    color: #e2e8f0;
+  }
+  
+  .battery-percentage {
+    background: linear-gradient(135deg, #e2e8f0, #a0aec0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .battery-outline {
+    border-color: #e2e8f0;
+    background-color: rgba(26, 32, 44, 0.8);
+    box-shadow: 
+      inset 0 0 15px rgba(0, 0, 0, 0.3),
+      0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .battery-terminal {
+    background: linear-gradient(to right, #e2e8f0, #a0aec0);
+  }
+  
+  .battery-details {
+    background-color: rgba(45, 55, 72, 0.85);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .status-label,
+  .time-label {
+    color: #cbd5e0;
+  }
+  
+  .health-bar {
+    background-color: #4a5568;
+  }
+  
+  .health-labels {
+    color: #a0aec0;
+  }
+  
+  .battery-hint {
+    color: #cbd5e0;
+    background-color: rgba(45, 55, 72, 0.8);
+  }
+  
+  .supported-browsers {
+    background-color: rgba(45, 55, 72, 0.9);
+  }
+  
+  .supported-browsers p {
+    color: #e2e8f0;
+  }
+  
+  .supported-browsers li {
+    color: #cbd5e0;
+  }
+  
+  .battery-error {
+    background-color: rgba(229, 62, 62, 0.2);
+    border-left-color: #fc8181;
+  }
+}
+
+/* Animation for battery level changes */
+@keyframes levelChange {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.battery-level.changing {
+  animation: levelChange 0.5s ease;
+}

@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/index.ts","./src/components/batteryindicator/batteryindicator.tsx","./src/components/batteryindicator/index.ts","./src/types/battery.ts"],"errors":true,"version":"5.9.3"}
