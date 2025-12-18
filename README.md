@@ -1,73 +1,196 @@
-# React + TypeScript + Vite
+# 🔋 Battery Indicator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time device battery monitoring web application built with React, TypeScript, and Vite. This application uses the Battery Status API to display comprehensive battery information directly in your browser.
 
-Currently, two official plugins are available:
+## 📋 Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Browser Compatibility](#browser-compatibility)
+- [Development](#development)
+- [Build & Deploy](#build--deploy)
+- [License](#license)
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Real-time Battery Monitoring**: Live tracking of device battery level and charging status
+- **Charging Information**: Displays estimated charging and discharging time
+- **Responsive Design**: Clean, modern UI that works on all devices
+- **TypeScript Support**: Fully typed application for better developer experience
+- **Auto-refresh**: Updates battery status every minute
+- **Error Handling**: Graceful fallback for unsupported browsers
+- **Fast Development**: Hot Module Replacement (HMR) with Vite
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React** (v19.2.0) - UI library
+- **TypeScript** (v5.9.3) - Static typing
+- **Vite** (v7.2.4) - Build tool and dev server
+- **ESLint** - Code quality and linting
+- **CSS3** - Styling
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Steps
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd Battery-Indicator
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+## 🚀 Usage
+
+### Development Server
+
+Start the development server with hot module replacement:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+### Production Build
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+### Preview Build
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+### Linting
+
+Run ESLint to check code quality:
+
+```bash
+npm run lint
+```
+
+## 📁 Project Structure
+
+```
+Battery-Indicator/
+├── src/
+│   ├── components/
+│   │   └── BatteryIndicator/
+│   │       ├── BatteryIndicator.tsx      # Main battery display component
+│   │       ├── BatteryIndicator.css      # Component styling
+│   │       └── index.ts                  # Component export
+│   ├── types/
+│   │   └── battery.ts                    # TypeScript interfaces for Battery API
+│   ├── styles/
+│   │   └── global.css                    # Global styles
+│   ├── App.tsx                           # Main app component
+│   ├── App.css                           # App styles
+│   ├── main.tsx                          # React entry point
+│   └── index.css                         # Base styles
+├── public/
+│   └── index.html                        # HTML template
+├── index.html                            # Root HTML file
+├── package.json                          # Dependencies and scripts
+├── tsconfig.json                         # TypeScript configuration
+├── vite.config.ts                        # Vite configuration
+├── eslint.config.js                      # ESLint configuration
+└── README.md                             # This file
+```
+
+## 🔋 Battery Status API
+
+The Battery Indicator uses the **Battery Status API** to access device battery information:
+
+### Supported Properties
+
+- **Level**: Battery percentage (0-1)
+- **Charging**: Whether the device is currently charging
+- **Charging Time**: Estimated time to full charge in seconds
+- **Discharging Time**: Estimated time until battery depletes in seconds
+
+### API Details
+
+```typescript
+interface BatteryStatus {
+  level: number; // 0 to 1 (0% to 100%)
+  charging: boolean; // Charging state
+  chargingTime: number; // Seconds to full charge
+  dischargingTime: number; // Seconds until battery depletes
+}
+```
+
+## 🌐 Browser Compatibility
+
+This application works best on:
+
+- ✅ **Chrome/Chromium** (recommended)
+- ✅ **Edge**
+- ⚠️ **Firefox** - Limited support
+- ❌ **Safari** - Not supported
+- ❌ **IE** - Not supported
+
+**Note**: The Battery Status API is a deprecated API. Browser support is limited and varies by platform. The application includes fallback messaging for unsupported browsers.
+
+## 👨‍💻 Development
+
+### Available Commands
+
+| Command           | Description                       |
+| ----------------- | --------------------------------- |
+| `npm run dev`     | Start development server with HMR |
+| `npm run build`   | Build for production              |
+| `npm run preview` | Preview production build          |
+| `npm run lint`    | Check code quality with ESLint    |
+
+### Code Quality
+
+The project uses ESLint with React and TypeScript support to maintain code quality. Configuration can be extended in `eslint.config.js`.
+
+## 📦 Build & Deploy
+
+### Build Process
+
+The build process includes:
+
+1. TypeScript compilation (`tsc -b`)
+2. Vite bundling and optimization
+3. Output to `dist/` directory
+
+### Deployment
+
+Deploy the `dist/` folder to any static hosting service:
+
+- Netlify
+- Vercel
+- GitHub Pages
+- Firebase Hosting
+- AWS S3 + CloudFront
+
+## 📄 License
+
+This project is created by Taofeek Kehinde. All rights reserved.
+
+---
+
+**Made with ❤️ for battery monitoring**
